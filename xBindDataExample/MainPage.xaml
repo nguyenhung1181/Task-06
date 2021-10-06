@@ -5,6 +5,7 @@
     xmlns:local="using:xBindDataExample"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:xBindDataExample.Models"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -14,12 +15,16 @@
             <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
 
-        <GridView ItemsSource="{x:Bind Books}">
+        <GridView ItemsSource="{x:Bind Books}"
+                  IsItemClickEnabled="True" 
+                  ItemClick="GridView_ItemClick">
             <GridView.ItemTemplate>
-                <DataTemplate x:DataType="Book">
-                    <Image Width="150"/>
-                    <TextBlock FontSize="16"/>
-                    <TextBlock FontSize="10"/>
+                <DataTemplate x:DataType="data:Book">
+                    <StackPanel HorizontalAlignment="Center">
+                        <Image Width="150" Source="{x:Bind CoverImage}"/>
+                        <TextBlock FontSize="16" Text="{x:Bind Title}"/>
+                        <TextBlock FontSize="10" Text="{x:Bind Author}"/>
+                    </StackPanel>
                 </DataTemplate>
             </GridView.ItemTemplate>
         </GridView>
